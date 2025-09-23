@@ -1,10 +1,9 @@
 package com.example.cardatabase.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,7 +16,12 @@ public class Owner {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ownerId;
 
+    @NonNull
     private final String firstName;
+    @NonNull
     private final String lastName;
 
+    // 소유자는 다수의 차들을 가질 수 있기 때문에 Collections를 사용
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<Car> cars;
 }
