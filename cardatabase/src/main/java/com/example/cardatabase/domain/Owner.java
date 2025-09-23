@@ -1,9 +1,23 @@
 package com.example.cardatabase.domain;
 
 import jakarta.persistence.Entity;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.*;
 
 @Entity
-@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor(force = true)
+@RequiredArgsConstructor
 public class Owner {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ownerId;
+
+    private final String firstName;
+    private final String lastName;
+
 }
